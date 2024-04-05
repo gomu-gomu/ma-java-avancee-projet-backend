@@ -1,20 +1,39 @@
 package com.gomugomu.ma_java_avancee_projet_backend.model;
 
+import java.util.UUID;
+
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+
 import com.gomugomu.ma_java_avancee_projet_backend.enums.UserType;
 
 
 
+@Entity
+@Table(name = "Users")
 public class User {
 
-  private String id;
+  @Id
+  @GeneratedValue(generator = "UUID")
+  @Column(updatable = false, nullable = false)
+  private UUID id;
+
   private String email;
   private String password;
   private String firstName;
   private String lastName;
   private String phone;
+
+  @Column(name = "type")
+  @Enumerated(EnumType.ORDINAL)
   private UserType type;
 
-  public User(String id, String email, String password, String firstName, String lastName, String phone, UserType type) {
+  public User(UUID id, String email, String password, String firstName, String lastName, String phone, UserType type) {
     this.id = id;
     this.email = email;
     this.password = password;
@@ -24,11 +43,13 @@ public class User {
     this.type = type;
   }
 
-  public String getId() {
+  public User() {}
+
+  public UUID getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(UUID id) {
     this.id = id;
   }
 
