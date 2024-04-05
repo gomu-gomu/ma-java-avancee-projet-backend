@@ -37,6 +37,8 @@ public class User {
   @Column(name = "type")
   @Enumerated(EnumType.ORDINAL)
   private UserType type;
+  
+  public User() {}
 
   public User(UUID id, String email, String password, String firstName, String lastName, String phone, UserType type) {
     this.id = id;
@@ -47,8 +49,6 @@ public class User {
     this.phone = phone;
     this.type = type;
   }
-
-  public User() {}
 
   public UUID getId() {
     return id;
