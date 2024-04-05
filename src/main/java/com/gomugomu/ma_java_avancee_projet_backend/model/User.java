@@ -15,7 +15,7 @@ import com.gomugomu.ma_java_avancee_projet_backend.enums.UserType;
 
 
 @Entity
-@Table(name = "Users")
+@Table(name = "users")
 public class User {
 
   @Id
@@ -25,8 +25,13 @@ public class User {
 
   private String email;
   private String password;
+
+  @Column(name = "\"firstName\"")
   private String firstName;
+
+  @Column(name = "\"lastName\"")
   private String lastName;
+
   private String phone;
 
   @Column(name = "type")
