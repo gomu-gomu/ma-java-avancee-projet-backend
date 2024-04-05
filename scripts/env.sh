@@ -1,0 +1,3 @@
+export SPRING_DATASOURCE_USERNAME=usr
+export SPRING_DATASOURCE_PASSWORD=pwd
+export SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/db
