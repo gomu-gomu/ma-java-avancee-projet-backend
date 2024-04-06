@@ -1,11 +1,8 @@
 package com.gomugomu.ma_java_avancee_projet_backend.model;
 
-import java.util.UUID;
 import java.sql.Timestamp;
 
-import jakarta.persistence.Id;
 import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.MappedSuperclass;
 
 import org.hibernate.annotations.UpdateTimestamp;
@@ -15,11 +12,6 @@ import org.hibernate.annotations.CreationTimestamp;
 
 @MappedSuperclass
 public abstract class Base {
-
-  @Id
-  @GeneratedValue(generator = "UUID")
-  @Column(updatable = false, nullable = false)
-  private UUID id;
   
   @Column(name = "\"createdAt\"", nullable = false)
   @CreationTimestamp
@@ -31,18 +23,9 @@ public abstract class Base {
 
   public Base() {}
   
-  public Base(UUID id, Timestamp createdAt, Timestamp updatedAt) {
-    this.id = id;
+  public Base(Timestamp createdAt, Timestamp updatedAt) {
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
-  }
-
-  public UUID getId() {
-    return id;
-  }
-
-  public void setId(UUID id) {
-    this.id = id;
   }
 
   public Timestamp getCreatedAt() {

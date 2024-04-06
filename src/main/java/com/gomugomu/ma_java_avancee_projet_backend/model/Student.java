@@ -11,7 +11,7 @@ import jakarta.persistence.Entity;
 
 @Entity
 @Table(name = "students")
-public class Student extends Base {
+public class Student extends BasePrimary {
 
   @Column(name = "\"userId\"", nullable = false)
   private UUID userId;

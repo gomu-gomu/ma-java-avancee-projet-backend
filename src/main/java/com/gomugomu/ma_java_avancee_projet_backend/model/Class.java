@@ -11,7 +11,7 @@ import jakarta.persistence.Entity;
 
 @Entity
 @Table(name = "classes")
-public class Class extends Base {
+public class Class extends BasePrimary {
 
   @Column(nullable = false)
   private String name;

@@ -15,7 +15,7 @@ import com.gomugomu.ma_java_avancee_projet_backend.enums.UserType;
 
 @Entity
 @Table(name = "users")
-public class User extends Base {
+public class User extends BasePrimary {
 
   @Column(nullable = false)
   private String email;
