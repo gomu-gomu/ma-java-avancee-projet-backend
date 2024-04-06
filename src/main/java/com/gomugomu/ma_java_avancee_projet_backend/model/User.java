@@ -2,6 +2,11 @@ package com.gomugomu.ma_java_avancee_projet_backend.model;
 
 import java.util.UUID;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.sql.Timestamp;
+
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
@@ -37,10 +42,19 @@ public class User {
   @Column(name = "type")
   @Enumerated(EnumType.ORDINAL)
   private UserType type;
-  
+
+  @Column(name = "\"createdAt\"")
+  @CreationTimestamp
+  private Timestamp createdAt;
+
+  @UpdateTimestamp
+  @Column(name = "\"updatedAt\"")
+  private Timestamp updatedAt;
+
   public User() {}
 
-  public User(UUID id, String email, String password, String firstName, String lastName, String phone, UserType type) {
+  public User(UUID id, String email, String password, String firstName, String lastName, String phone, UserType type,
+      Timestamp createdAt, Timestamp updatedAt) {
     this.id = id;
     this.email = email;
     this.password = password;
@@ -48,6 +62,8 @@ public class User {
     this.lastName = lastName;
     this.phone = phone;
     this.type = type;
+    this.createdAt = createdAt;
+    this.updatedAt = updatedAt;
   }
 
   public UUID getId() {
@@ -104,5 +120,21 @@ public class User {
 
   public void setLastName(String lastName) {
     this.lastName = lastName;
+  }
+
+  public Timestamp getCreatedAt() {
+    return createdAt;
+  }
+
+  public void setCreatedAt(Timestamp createdAt) {
+    this.createdAt = createdAt;
+  }
+
+  public Timestamp getUpdatedAt() {
+    return updatedAt;
+  }
+
+  public void setUpdatedAt(Timestamp updatedAt) {
+    this.updatedAt = updatedAt;
   }
 }
