@@ -10,13 +10,13 @@ import jakarta.persistence.Entity;
 
 
 @Entity
-@Table(name = "parenthood")
+@Table(name = "parenthoods")
 public class Parenthood extends Base {
 
-  @Column(name = "\"parentId\"")
+  @Column(name = "\"parentId\"", nullable = false)
   private UUID parentId;
 
-  @Column(name = "\"studentId\"")
+  @Column(name = "\"studentId\"", nullable = false)
   private UUID studentId;
 
   public Parenthood() {

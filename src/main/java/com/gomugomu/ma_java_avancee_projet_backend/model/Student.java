@@ -13,22 +13,37 @@ import jakarta.persistence.Entity;
 @Table(name = "students")
 public class Student extends Base {
 
-  @Column(name = "\"userId\"")
+  @Column(name = "\"userId\"", nullable = false)
   private UUID userId;
 
+  @Column(nullable = false)
   private String cne;
+
+  @Column
   private String cin;
+
+  @Column
+  private String phone;
+
+  @Column(name = "\"firstName\"", nullable = false)
+  private String firstName;
+
+  @Column(name = "\"lastName\"", nullable = false)
+  private String lastName;
 
   public Student() {
     super();
   }
   
-  public Student(UUID id, UUID userId, String cne, String cin, Timestamp createdAt, Timestamp updatedAt) {
+  public Student(UUID id, UUID userId, String cne, String cin, String firstName, String lastName, String phone, Timestamp createdAt, Timestamp updatedAt) {
     super(id, createdAt, updatedAt);
 
-    this.userId = userId;
     this.cne = cne;
     this.cin = cin;
+    this.phone = phone;
+    this.userId = userId;
+    this.lastName = lastName;
+    this.firstName = firstName;
   }
 
   public UUID getUserId() {
@@ -53,5 +68,29 @@ public class Student extends Base {
 
   public void setCin(String cin) {
     this.cin = cin;
+  }
+
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+  public String getLastName() {
+    return lastName;
+  }
+
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
+
+  public String getPhone() {
+    return phone;
+  }
+
+  public void setPhone(String phone) {
+    this.phone = phone;
   }
 }
