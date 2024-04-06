@@ -1,19 +1,13 @@
 package com.gomugomu.ma_java_avancee_projet_backend.model;
 
 import java.util.UUID;
-
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
 import java.sql.Timestamp;
 
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
 
 import com.gomugomu.ma_java_avancee_projet_backend.enums.UserType;
 
@@ -21,12 +15,7 @@ import com.gomugomu.ma_java_avancee_projet_backend.enums.UserType;
 
 @Entity
 @Table(name = "users")
-public class User {
-
-  @Id
-  @GeneratedValue(generator = "UUID")
-  @Column(updatable = false, nullable = false)
-  private UUID id;
+public class User extends Base {
 
   private String email;
   private String password;
@@ -43,34 +32,19 @@ public class User {
   @Enumerated(EnumType.ORDINAL)
   private UserType type;
 
-  @Column(name = "\"createdAt\"")
-  @CreationTimestamp
-  private Timestamp createdAt;
-
-  @UpdateTimestamp
-  @Column(name = "\"updatedAt\"")
-  private Timestamp updatedAt;
-
-  public User() {}
-
+  public User() {
+    super();
+  }
+  
   public User(UUID id, String email, String password, String firstName, String lastName, String phone, UserType type, Timestamp createdAt, Timestamp updatedAt) {
-    this.id = id;
+    super(id, createdAt, updatedAt);
+
     this.email = email;
     this.password = password;
     this.firstName = firstName;
     this.lastName = lastName;
     this.phone = phone;
     this.type = type;
-    this.createdAt = createdAt;
-    this.updatedAt = updatedAt;
-  }
-
-  public UUID getId() {
-    return id;
-  }
-
-  public void setId(UUID id) {
-    this.id = id;
   }
 
   public String getEmail() {
@@ -119,21 +93,5 @@ public class User {
 
   public void setLastName(String lastName) {
     this.lastName = lastName;
-  }
-
-  public Timestamp getCreatedAt() {
-    return createdAt;
-  }
-
-  public void setCreatedAt(Timestamp createdAt) {
-    this.createdAt = createdAt;
-  }
-
-  public Timestamp getUpdatedAt() {
-    return updatedAt;
-  }
-
-  public void setUpdatedAt(Timestamp updatedAt) {
-    this.updatedAt = updatedAt;
   }
 }
