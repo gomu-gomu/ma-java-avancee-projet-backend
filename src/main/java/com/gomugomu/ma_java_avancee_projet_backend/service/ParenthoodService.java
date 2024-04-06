@@ -20,7 +20,7 @@ public class ParenthoodService {
     this.parenthoodRepository = userRepository;
   }
 
-  public List<Parenthood> getAllparenthoods() {
+  public List<Parenthood> getAllParenthoods() {
     return parenthoodRepository.findAll();
   }
 

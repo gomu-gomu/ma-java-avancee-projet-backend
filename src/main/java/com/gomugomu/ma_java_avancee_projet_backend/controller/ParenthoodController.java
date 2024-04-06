@@ -26,8 +26,8 @@ public class ParenthoodController {
   }
 
   @GetMapping("/parenthoods")
-    public ResponseEntity<List<Parenthood>> getAllParenthood() {
-      List<Parenthood> parenthoods = parenthoodService.getAllparenthoods();
+    public ResponseEntity<List<Parenthood>> getAllParenthoods() {
+      List<Parenthood> parenthoods = parenthoodService.getAllParenthoods();
       return ResponseEntity.ok(parenthoods);
   }
 
