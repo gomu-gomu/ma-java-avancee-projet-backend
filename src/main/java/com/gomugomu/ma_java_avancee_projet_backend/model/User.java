@@ -53,8 +53,7 @@ public class User {
 
   public User() {}
 
-  public User(UUID id, String email, String password, String firstName, String lastName, String phone, UserType type,
-      Timestamp createdAt, Timestamp updatedAt) {
+  public User(UUID id, String email, String password, String firstName, String lastName, String phone, UserType type, Timestamp createdAt, Timestamp updatedAt) {
     this.id = id;
     this.email = email;
     this.password = password;
