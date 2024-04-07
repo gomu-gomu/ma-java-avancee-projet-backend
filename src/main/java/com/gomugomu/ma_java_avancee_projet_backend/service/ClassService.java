@@ -16,8 +16,8 @@ public class ClassService {
   private ClassRepository classRepository;
 
   @Autowired
-  public ClassService(ClassRepository userRepository) {
-    this.classRepository = userRepository;
+  public ClassService(ClassRepository classRepository) {
+    this.classRepository = classRepository;
   }
 
   public List<Class> getAllClasses() {

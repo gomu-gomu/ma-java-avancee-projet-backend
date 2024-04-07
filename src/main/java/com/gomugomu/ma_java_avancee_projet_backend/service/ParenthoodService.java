@@ -16,8 +16,8 @@ public class ParenthoodService {
   private ParenthoodRepository parenthoodRepository;
 
   @Autowired
-  public ParenthoodService(ParenthoodRepository userRepository) {
-    this.parenthoodRepository = userRepository;
+  public ParenthoodService(ParenthoodRepository parenthoodRepository) {
+    this.parenthoodRepository = parenthoodRepository;
   }
 
   public List<Parenthood> getAllParenthoods() {

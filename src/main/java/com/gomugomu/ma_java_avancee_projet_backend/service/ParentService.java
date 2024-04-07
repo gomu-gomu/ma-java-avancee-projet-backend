@@ -16,8 +16,8 @@ public class ParentService {
   private ParentRepository parentRepository;
 
   @Autowired
-  public ParentService(ParentRepository userRepository) {
-    this.parentRepository = userRepository;
+  public ParentService(ParentRepository parentRepository) {
+    this.parentRepository = parentRepository;
   }
 
   public List<Parent> getAllParents() {

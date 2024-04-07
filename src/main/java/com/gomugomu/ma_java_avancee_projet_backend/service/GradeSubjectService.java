@@ -16,8 +16,8 @@ public class GradeSubjectService {
   private GradeSubjectRepository gradeSubjectRepository;
 
   @Autowired
-  public GradeSubjectService(GradeSubjectRepository userRepository) {
-    this.gradeSubjectRepository = userRepository;
+  public GradeSubjectService(GradeSubjectRepository gradeSubjectRepository) {
+    this.gradeSubjectRepository = gradeSubjectRepository;
   }
 
   public List<GradeSubject> getAllGradeSubjects() {

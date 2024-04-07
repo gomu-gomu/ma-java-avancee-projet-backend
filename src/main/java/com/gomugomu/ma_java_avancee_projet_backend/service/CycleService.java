@@ -16,8 +16,8 @@ public class CycleService {
   private CycleRepository cycleRepository;
 
   @Autowired
-  public CycleService(CycleRepository userRepository) {
-    this.cycleRepository = userRepository;
+  public CycleService(CycleRepository cycleRepository) {
+    this.cycleRepository = cycleRepository;
   }
 
   public List<Cycle> getAllCycles() {

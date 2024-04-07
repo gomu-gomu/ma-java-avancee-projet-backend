@@ -16,8 +16,8 @@ public class GradeService {
   private GradeRepository gradeRepository;
 
   @Autowired
-  public GradeService(GradeRepository userRepository) {
-    this.gradeRepository = userRepository;
+  public GradeService(GradeRepository gradeRepository) {
+    this.gradeRepository = gradeRepository;
   }
 
   public List<Grade> getAllGrades() {

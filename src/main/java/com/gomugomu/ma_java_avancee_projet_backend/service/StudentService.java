@@ -16,8 +16,8 @@ public class StudentService {
   private StudentRepository studentRepository;
 
   @Autowired
-  public StudentService(StudentRepository userRepository) {
-    this.studentRepository = userRepository;
+  public StudentService(StudentRepository studentRepository) {
+    this.studentRepository = studentRepository;
   }
 
   public List<Student> getAllStudents() {
