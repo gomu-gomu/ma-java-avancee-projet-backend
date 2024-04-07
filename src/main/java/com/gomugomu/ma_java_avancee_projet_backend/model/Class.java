@@ -23,7 +23,7 @@ public class Class extends BasePrimary {
     super();
   }
 
-  public Class(UUID id, String name, UUID gradeId, Timestamp createdAt, Timestamp updatedAt) {
+  public Class(UUID id, UUID gradeId, String name, Timestamp createdAt, Timestamp updatedAt) {
     super(id, createdAt, updatedAt);
 
     this.name = name;
