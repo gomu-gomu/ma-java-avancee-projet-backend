@@ -19,7 +19,7 @@ public class Student extends BasePrimary {
   @Column(nullable = false)
   private String cne;
 
-  @Column
+  @Column(unique = true)
   private String cin;
 
   @Column

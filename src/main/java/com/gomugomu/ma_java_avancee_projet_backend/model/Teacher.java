@@ -10,11 +10,14 @@ import jakarta.persistence.Entity;
 
 
 @Entity
-@Table(name = "parents")
-public class Parent extends BasePrimary {
+@Table(name = "teachers")
+public class Teacher extends BasePrimary {
 
   @Column(name = "\"userId\"", nullable = false)
   private UUID userId;
+
+  @Column(name = "\"subjectId\"", nullable = false)
+  private UUID subjectId;
 
   @Column(nullable = false, unique = true)
   private String cin;
@@ -28,17 +31,18 @@ public class Parent extends BasePrimary {
   @Column(name = "\"lastName\"", nullable = false)
   private String lastName;
 
-  public Parent() {
+  public Teacher() {
     super();
   }
   
-  public Parent(UUID id, UUID userId, String cin, String firstName, String lastName, String phone, Timestamp createdAt, Timestamp updatedAt) {
+  public Teacher(UUID id, UUID userId, UUID subjectId, String cin, String firstName, String lastName, String phone, Timestamp createdAt, Timestamp updatedAt) {
     super(id, createdAt, updatedAt);
 
     this.cin = cin;
     this.phone = phone;
     this.userId = userId;
     this.lastName = lastName;
+    this.subjectId = subjectId;
     this.firstName = firstName;
   }
 
@@ -48,6 +52,14 @@ public class Parent extends BasePrimary {
 
   public void setUserId(UUID userId) {
     this.userId = userId;
+  }
+
+  public UUID getSubjectId() {
+    return subjectId;
+  }
+
+  public void setSubjectId(UUID subjectId) {
+    this.subjectId = subjectId;
   }
 
   public String getCin() {
