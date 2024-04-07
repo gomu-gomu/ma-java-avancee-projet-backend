@@ -16,18 +16,18 @@ public class Class extends BasePrimary {
   @Column(nullable = false)
   private String name;
 
-  @Column(nullable = false)
-  private short level;
+  @Column(name = "\"gradeId\"", nullable = false)
+  private UUID gradeId;
 
   public Class() {
     super();
   }
 
-  public Class(UUID id, String name, short level, Timestamp createdAt, Timestamp updatedAt) {
+  public Class(UUID id, String name, UUID gradeId, Timestamp createdAt, Timestamp updatedAt) {
     super(id, createdAt, updatedAt);
 
     this.name = name;
-    this.level = level;
+    this.gradeId = gradeId;
   }
 
   public String getName() {
@@ -38,11 +38,11 @@ public class Class extends BasePrimary {
     this.name = name;
   }
 
-  public short getLevel() {
-    return level;
+  public UUID getGradeId() {
+    return gradeId;
   }
 
-  public void setLevel(short level) {
-    this.level = level;
+  public void setGradeId(UUID gradeId) {
+    this.gradeId = gradeId;
   }
 }
