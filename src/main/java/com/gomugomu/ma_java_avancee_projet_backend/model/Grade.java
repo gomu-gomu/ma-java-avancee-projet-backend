@@ -19,15 +19,27 @@ public class Grade extends BasePrimary {
   @Column(nullable = false)
   private short level;
 
+  @Column(name = "\"sectorId\"", nullable = false)
+  private UUID sectorId;
+
   public Grade() {
     super();
   }
 
-  public Grade(UUID id, String name, short level, Timestamp createdAt, Timestamp updatedAt) {
+  public Grade(UUID id, UUID sectorId, String name, short level, Timestamp createdAt, Timestamp updatedAt) {
     super(id, createdAt, updatedAt);
 
     this.name = name;
     this.level = level;
+    this.sectorId = sectorId;
+  }
+
+  public UUID getSectorId() {
+    return sectorId;
+  }
+
+  public void setSectorId(UUID sectorId) {
+    this.sectorId = sectorId;
   }
 
   public String getName() {
