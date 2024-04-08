@@ -1,24 +1,15 @@
-package com.gomugomu.ma_java_avancee_projet_backend.service;
+package com.gomugomu.ma_java_avancee_projet_backend.parent;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.gomugomu.ma_java_avancee_projet_backend.model.Parent;
-import com.gomugomu.ma_java_avancee_projet_backend.repository.ParentRepository;
-
-
-
 @Service
 public class ParentService {
 
-  private ParentRepository parentRepository;
-
   @Autowired
-  public ParentService(ParentRepository parentRepository) {
-    this.parentRepository = parentRepository;
-  }
+  private ParentRepository parentRepository;
 
   public List<Parent> getAllParents() {
     return parentRepository.findAll();

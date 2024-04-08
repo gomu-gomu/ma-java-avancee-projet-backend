@@ -1,4 +1,4 @@
-package com.gomugomu.ma_java_avancee_projet_backend.controller;
+package com.gomugomu.ma_java_avancee_projet_backend.cycle;
 
 import java.util.List;
 
@@ -7,31 +7,24 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.gomugomu.ma_java_avancee_projet_backend.model.Cycle;
-import com.gomugomu.ma_java_avancee_projet_backend.service.CycleService;
-
-
-
 @RestController
+@RequestMapping("/cycle")
 public class CycleController {
 
-  private final CycleService cycleService;
-
   @Autowired
-  public CycleController(CycleService cycleService) {
-    this.cycleService = cycleService;
+  private CycleService cycleService;
+
+  @GetMapping("")
+  public ResponseEntity<List<Cycle>> getAllClasses() {
+    List<Cycle> cycles = cycleService.getAllCycles();
+    return ResponseEntity.ok(cycles);
   }
 
-  @GetMapping("/cycles")
-    public ResponseEntity<List<Cycle>> getAllClasses() {
-      List<Cycle> cycles = cycleService.getAllCycles();
-      return ResponseEntity.ok(cycles);
-  }
-
-  @PostMapping("/cycle")
+  @PostMapping("")
   public ResponseEntity<Cycle> createParenthood(@RequestBody Cycle cycle) {
     Cycle createdCycle = cycleService.createCycle(cycle);
     return new ResponseEntity<>(createdCycle, HttpStatus.CREATED);
