@@ -1,24 +1,15 @@
-package com.gomugomu.ma_java_avancee_projet_backend.service;
+package com.gomugomu.ma_java_avancee_projet_backend.cycle;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.gomugomu.ma_java_avancee_projet_backend.model.StudentCycle;
-import com.gomugomu.ma_java_avancee_projet_backend.repository.StudentCycleRepository;
-
-
-
 @Service
 public class StudentCycleService {
 
-  private StudentCycleRepository studentCycleRepository;
-
   @Autowired
-  public StudentCycleService(StudentCycleRepository studentCycleRepository) {
-    this.studentCycleRepository = studentCycleRepository;
-  }
+  private StudentCycleRepository studentCycleRepository;
 
   public List<StudentCycle> getAllStudentCycles() {
     return studentCycleRepository.findAll();
