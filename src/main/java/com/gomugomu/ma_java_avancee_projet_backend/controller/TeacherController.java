@@ -21,8 +21,8 @@ public class TeacherController {
   private final TeacherService teacherService;
 
   @Autowired
-  public TeacherController(TeacherService userService) {
-    this.teacherService = userService;
+  public TeacherController(TeacherService teacherService) {
+    this.teacherService = teacherService;
   }
 
   @GetMapping("/teachers")

@@ -21,8 +21,8 @@ public class ParentController {
   private final ParentService parentService;
 
   @Autowired
-  public ParentController(ParentService userService) {
-    this.parentService = userService;
+  public ParentController(ParentService parentService) {
+    this.parentService = parentService;
   }
 
   @GetMapping("/parents")
