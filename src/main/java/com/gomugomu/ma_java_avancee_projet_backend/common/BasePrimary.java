@@ -1,4 +1,4 @@
-package com.gomugomu.ma_java_avancee_projet_backend.model;
+package com.gomugomu.ma_java_avancee_projet_backend.common;
 
 import java.util.UUID;
 
@@ -12,13 +12,11 @@ import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.MappedSuperclass;
 
-
-
 @Data
 @MappedSuperclass
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false)
 public abstract class BasePrimary extends Base {
 
   @Id

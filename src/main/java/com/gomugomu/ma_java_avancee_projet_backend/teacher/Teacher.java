@@ -2,7 +2,7 @@ package com.gomugomu.ma_java_avancee_projet_backend.teacher;
 
 import java.util.UUID;
 
-import com.gomugomu.ma_java_avancee_projet_backend.model.BasePrimary;
+import com.gomugomu.ma_java_avancee_projet_backend.common.BasePrimary;
 
 import lombok.Data;
 import lombok.AllArgsConstructor;

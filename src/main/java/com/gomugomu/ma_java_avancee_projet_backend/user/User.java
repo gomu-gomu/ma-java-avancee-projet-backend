@@ -6,12 +6,13 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
 import jakarta.persistence.Table;
+
+import com.gomugomu.ma_java_avancee_projet_backend.common.BasePrimary;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-
-import com.gomugomu.ma_java_avancee_projet_backend.model.BasePrimary;
 
 @Data
 @Entity

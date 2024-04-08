@@ -1,13 +1,14 @@
 package com.gomugomu.ma_java_avancee_projet_backend.subject;
 
-import com.gomugomu.ma_java_avancee_projet_backend.model.BasePrimary;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
 import jakarta.persistence.Table;
+
+import com.gomugomu.ma_java_avancee_projet_backend.common.BasePrimary;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 
