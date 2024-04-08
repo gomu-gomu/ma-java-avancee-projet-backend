@@ -16,12 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 @RequestMapping("/user")
 public class UserController {
 
-  private final UserService userService;
-
   @Autowired
-  public UserController(UserService userService) {
-    this.userService = userService;
-  }
+  private UserService userService;
 
   @GetMapping("")
   public ResponseEntity<List<User>> getAllUsers() {
