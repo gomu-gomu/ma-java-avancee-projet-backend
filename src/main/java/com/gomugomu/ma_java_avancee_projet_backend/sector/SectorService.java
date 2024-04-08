@@ -1,24 +1,15 @@
-package com.gomugomu.ma_java_avancee_projet_backend.service;
+package com.gomugomu.ma_java_avancee_projet_backend.sector;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.gomugomu.ma_java_avancee_projet_backend.model.Sector;
-import com.gomugomu.ma_java_avancee_projet_backend.repository.SectorRepository;
-
-
-
 @Service
 public class SectorService {
 
-  private SectorRepository sectorRepository;
-
   @Autowired
-  public SectorService(SectorRepository sectorRepository) {
-    this.sectorRepository = sectorRepository;
-  }
+  private SectorRepository sectorRepository;
 
   public List<Sector> getAllSectors() {
     return sectorRepository.findAll();
