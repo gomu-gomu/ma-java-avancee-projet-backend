@@ -1,24 +1,15 @@
-package com.gomugomu.ma_java_avancee_projet_backend.service;
+package com.gomugomu.ma_java_avancee_projet_backend.exam;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.gomugomu.ma_java_avancee_projet_backend.model.Exam;
-import com.gomugomu.ma_java_avancee_projet_backend.repository.ExamRepository;
-
-
-
 @Service
 public class ExamService {
 
-  private ExamRepository examRepository;
-
   @Autowired
-  public ExamService(ExamRepository examRepository) {
-    this.examRepository = examRepository;
-  }
+  private ExamRepository examRepository;
 
   public List<Exam> getalleExams() {
     return examRepository.findAll();
