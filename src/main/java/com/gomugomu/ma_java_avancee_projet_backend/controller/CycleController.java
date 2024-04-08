@@ -27,8 +27,8 @@ public class CycleController {
 
   @GetMapping("/cycles")
     public ResponseEntity<List<Cycle>> getAllClasses() {
-      List<Cycle> classes = cycleService.getAllCycles();
-      return ResponseEntity.ok(classes);
+      List<Cycle> cycles = cycleService.getAllCycles();
+      return ResponseEntity.ok(cycles);
   }
 
   @PostMapping("/cycle")
