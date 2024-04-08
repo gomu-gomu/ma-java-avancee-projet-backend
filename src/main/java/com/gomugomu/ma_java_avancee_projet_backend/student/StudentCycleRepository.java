@@ -1,4 +1,4 @@
-package com.gomugomu.ma_java_avancee_projet_backend.cycle;
+package com.gomugomu.ma_java_avancee_projet_backend.student;
 
 import java.util.UUID;
 
