@@ -2,6 +2,10 @@ package com.gomugomu.ma_java_avancee_projet_backend.model;
 
 import java.sql.Timestamp;
 
+import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 
@@ -10,7 +14,10 @@ import org.hibernate.annotations.CreationTimestamp;
 
 
 
+@Data
 @MappedSuperclass
+@NoArgsConstructor
+@AllArgsConstructor
 public abstract class Base {
   
   @Column(name = "\"createdAt\"", nullable = false)
@@ -20,27 +27,4 @@ public abstract class Base {
   @UpdateTimestamp
   @Column(name = "\"updatedAt\"", nullable = false)
   private Timestamp updatedAt;
-
-  public Base() {}
-  
-  public Base(Timestamp createdAt, Timestamp updatedAt) {
-    this.createdAt = createdAt;
-    this.updatedAt = updatedAt;
-  }
-
-  public Timestamp getCreatedAt() {
-    return createdAt;
-  }
-
-  public void setCreatedAt(Timestamp createdAt) {
-    this.createdAt = createdAt;
-  }
-
-  public Timestamp getUpdatedAt() {
-    return updatedAt;
-  }
-
-  public void setUpdatedAt(Timestamp updatedAt) {
-    this.updatedAt = updatedAt;
-  }
 }

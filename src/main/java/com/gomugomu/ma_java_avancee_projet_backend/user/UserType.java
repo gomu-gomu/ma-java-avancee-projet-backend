@@ -1,6 +1,4 @@
-package com.gomugomu.ma_java_avancee_projet_backend.enums;
-
-
+package com.gomugomu.ma_java_avancee_projet_backend.user;
 
 public enum UserType {
   ADMIN,

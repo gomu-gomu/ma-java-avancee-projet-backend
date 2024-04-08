@@ -7,6 +7,10 @@ import java.io.Serializable;
 
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.IdClass;
@@ -55,6 +59,10 @@ class StudentExamId implements Serializable {
   }
 }
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper=false)
 @Entity
 @Table(name = "\"studentExams\"")
 @IdClass(StudentExamId.class)
@@ -70,40 +78,4 @@ public class StudentExam extends Base {
 
   @Column(nullable = true)
   private short score;
-
-  public StudentExam() {
-    super();
-  }
-
-  public StudentExam(UUID examId, UUID studentId, short score, Timestamp createdAt, Timestamp updatedAt) {
-    super(createdAt, updatedAt);
-
-    this.score = score;
-    this.examId = examId;
-    this.studentId = studentId;
-  }
-
-  public UUID getExamId() {
-    return examId;
-  }
-
-  public void setExamId(UUID examId) {
-    this.examId = examId;
-  }
-
-  public UUID getStudentId() {
-    return studentId;
-  }
-
-  public void setStudentId(UUID studentId) {
-    this.studentId = studentId;
-  }
-
-  public short getScore() {
-    return score;
-  }
-
-  public void setScore(short score) {
-    this.score = score;
-  }
 }

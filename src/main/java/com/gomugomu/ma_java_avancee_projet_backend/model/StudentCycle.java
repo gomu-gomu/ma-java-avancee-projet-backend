@@ -7,6 +7,10 @@ import java.io.Serializable;
 
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.IdClass;
@@ -55,6 +59,10 @@ class StudentCycleId implements Serializable {
   }
 }
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper=false)
 @Entity
 @Table(name = "\"studentCycles\"")
 @IdClass(StudentCycleId.class)
@@ -67,31 +75,4 @@ public class StudentCycle extends Base {
   @Id
   @Column(name = "\"studentId\"", nullable = false)
   private UUID studentId;
-
-  public StudentCycle() {
-    super();
-  }
-
-  public StudentCycle(UUID cycleId, UUID studentId, Timestamp createdAt, Timestamp updatedAt) {
-    super(createdAt, updatedAt);
-
-    this.cycleId = cycleId;
-    this.studentId = studentId;
-  }
-
-  public UUID getCycleId() {
-    return cycleId;
-  }
-
-  public void setCycleId(UUID cycleId) {
-    this.cycleId = cycleId;
-  }
-
-  public UUID getStudentId() {
-    return studentId;
-  }
-
-  public void setStudentId(UUID studentId) {
-    this.studentId = studentId;
-  }
 }

@@ -4,11 +4,19 @@ import java.util.UUID;
 import java.sql.Timestamp;
 
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 
 
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper=false)
 @Entity
 @Table(name = "cycles")
 public class Cycle extends BasePrimary {
@@ -18,31 +26,4 @@ public class Cycle extends BasePrimary {
 
   @Column(name = "\"classId\"", nullable = false)
   private UUID classId;
-
-  public Cycle() {
-    super();
-  }
-
-  public Cycle(UUID id, UUID classId, short year, Timestamp createdAt, Timestamp updatedAt) {
-    super(id, createdAt, updatedAt);
-
-    this.year = year;
-    this.classId = classId;
-  }
-
-  public UUID getClassId() {
-    return classId;
-  }
-
-  public void setClassId(UUID classId) {
-    this.classId = classId;
-  }
-
-  public short getYear() {
-    return year;
-  }
-
-  public void setYear(short year) {
-    this.year = year;
-  }
 }

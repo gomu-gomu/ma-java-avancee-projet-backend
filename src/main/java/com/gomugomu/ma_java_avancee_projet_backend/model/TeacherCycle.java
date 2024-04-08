@@ -11,6 +11,11 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.IdClass;
 
+import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
 
 
 class TeacherCycleId implements Serializable {
@@ -55,6 +60,11 @@ class TeacherCycleId implements Serializable {
   }
 }
 
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper=false)
 @Entity
 @Table(name = "\"teacherCycles\"")
 @IdClass(TeacherCycleId.class)
@@ -67,31 +77,4 @@ public class TeacherCycle extends Base {
   @Id
   @Column(name = "\"teacherId\"", nullable = false)
   private UUID teacherId;
-
-  public TeacherCycle() {
-    super();
-  }
-
-  public TeacherCycle(UUID cycleId, UUID teacherId, Timestamp createdAt, Timestamp updatedAt) {
-    super(createdAt, updatedAt);
-
-    this.cycleId = cycleId;
-    this.teacherId = teacherId;
-  }
-
-  public UUID getCycleId() {
-    return cycleId;
-  }
-
-  public void setCycleId(UUID cycleId) {
-    this.cycleId = cycleId;
-  }
-
-  public UUID getTeacherId() {
-    return teacherId;
-  }
-
-  public void setTeacherId(UUID teacherId) {
-    this.teacherId = teacherId;
-  }
 }

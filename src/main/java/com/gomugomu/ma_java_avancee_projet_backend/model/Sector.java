@@ -4,33 +4,23 @@ import java.util.UUID;
 import java.sql.Timestamp;
 
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 
 
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper=false)
 @Entity
 @Table(name = "sectors")
 public class Sector extends BasePrimary {
 
   @Column(nullable = false)
   private String name;
-
-  public Sector() {
-    super();
-  }
-
-  public Sector(UUID id, String name, Timestamp createdAt, Timestamp updatedAt) {
-    super(id, createdAt, updatedAt);
-
-    this.name = name;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
 }

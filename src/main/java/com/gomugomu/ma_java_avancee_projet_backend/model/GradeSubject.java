@@ -7,6 +7,10 @@ import java.io.Serializable;
 
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.IdClass;
@@ -55,6 +59,10 @@ class GradeSubjectId implements Serializable {
   }
 }
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper=false)
 @Entity
 @Table(name = "\"gradeSubjects\"")
 @IdClass(GradeSubjectId.class)
@@ -70,40 +78,4 @@ public class GradeSubject extends Base {
   
   @Column(nullable = false)
   private short coefficient;
-
-  public GradeSubject() {
-    super();
-  }
-
-  public GradeSubject(UUID gradeId, UUID subjectId, short coefficient, Timestamp createdAt, Timestamp updatedAt) {
-    super(createdAt, updatedAt);
-
-    this.gradeId = gradeId;
-    this.subjectId = subjectId;
-    this.coefficient = coefficient;
-  }
-
- public UUID getGradeId() {
-   return gradeId;
- }
-
- public void setGradeId(UUID gradeId) {
-   this.gradeId = gradeId;
- }
-
- public UUID getSubjectId() {
-   return subjectId;
- }
-
- public void setSubjectId(UUID subjectId) {
-   this.subjectId = subjectId;
- }
-
- public short getCoefficient() {
-   return coefficient;
- }
-
- public void setCoefficient(short coefficient) {
-   this.coefficient = coefficient;
- }
 }
