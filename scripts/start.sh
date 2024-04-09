@@ -1,6 +1,6 @@
 #!/bin/sh
 
-tag="0.0.1"
+tag="0.0.1-dev"
 username="gomu-gomu"
 project="ma-java-avancee-projet-backend"
 image="$username/$project:$tag"
