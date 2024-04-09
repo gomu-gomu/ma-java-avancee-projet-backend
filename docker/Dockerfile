@@ -4,4 +4,6 @@ WORKDIR /app
 COPY . /app
 
 RUN ./scripts/install.sh
+EXPOSE 8080
+
 CMD ["bash"]
