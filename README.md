@@ -23,3 +23,11 @@ For a visual representation of the API's endpoints and to interact with them, th
 ### OpenAPI Description
 
 The OpenAPI description, which provides a detailed specification of the API including its endpoints, parameters, and responses, is available at `/api/v3/api-docs`.
+
+| Service      | URL                                                  | Description                      |
+|--------------|------------------------------------------------------|----------------------------------|
+| **Backend**  | http://localhost:8080/api                            | Access to the API                |
+| **Swagger**  | http://localhost:8080/api/swagger-ui/index.html      | Access to Swagger                |
+| **OpenAPI**  | http://localhost:8080/api/v3/api-docs                | Access to OpenAPI description    |
+| **Info**     | http://localhost:8080/api/actuator/info              | Inspect API info                 |
+| **Health**   | http://localhost:8080/api/actuator/health            | Inspect API health               |
