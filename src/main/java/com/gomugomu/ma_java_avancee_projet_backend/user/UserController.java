@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.data.domain.Page;
 
 @RestController
@@ -36,8 +36,12 @@ public class UserController {
   }
 
   @GetMapping("/page/{page}")
-  public ResponseEntity<Page<User>> getAllUsersPage(@PathVariable Integer page) {
-    Page<User> users = userService.getAllUsers(page);
+  public ResponseEntity<Page<User>> getAllUsersPage(
+      @PathVariable Integer page,
+      @RequestParam(required = false) List<Integer> types,
+      @RequestParam(required = false) String sort,
+      @RequestParam(required = false) String order) {
+    Page<User> users = userService.getAllUsers(page, types, sort, order);
     return ResponseEntity.ok(users);
   }
 }
