@@ -38,10 +38,11 @@ public class UserController {
   @GetMapping("/page/{page}")
   public ResponseEntity<Page<User>> getAllUsersPage(
       @PathVariable Integer page,
+      @RequestParam(required = false) String q,
       @RequestParam(required = false) List<Integer> types,
       @RequestParam(required = false) String sort,
       @RequestParam(required = false) String order) {
-    Page<User> users = userService.getAllUsers(page, types, sort, order);
+    Page<User> users = userService.getAllUsers(page, q, types, sort, order);
     return ResponseEntity.ok(users);
   }
 }

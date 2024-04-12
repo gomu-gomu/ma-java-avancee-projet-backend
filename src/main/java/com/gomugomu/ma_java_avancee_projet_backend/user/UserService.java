@@ -1,12 +1,15 @@
 package com.gomugomu.ma_java_avancee_projet_backend.user;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
+
+import jakarta.persistence.criteria.Predicate;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,17 +28,23 @@ public class UserService {
     return userRepository.findAll();
   }
 
-  public Page<User> getAllUsers(Integer page, List<Integer> types, String sort, String order) {
+  public Page<User> getAllUsers(Integer page, String q, List<Integer> types, String sort, String order) {
     String sortField = (sort != null) ? sort : "createdAt";
     Sort.Direction sortOrder = Sort.Direction.fromOptionalString(order).orElse(Sort.Direction.ASC);
     Pageable pageable = PageRequest.of(page, paginationSize, Sort.by(sortOrder, sortField));
 
     Specification<User> spec = (root, query, cb) -> {
-      if (types == null || types.isEmpty()) {
-        return null;
-      } else {
-        return root.get("type").in(types);
+      List<Predicate> predicates = new ArrayList<>();
+
+      if (types != null && !types.isEmpty()) {
+        predicates.add(root.get("type").in(types));
       }
+
+      if (q != null && !q.isEmpty()) {
+        predicates.add(cb.like(cb.lower(root.get("email")), "%" + q.toLowerCase() + "%"));
+      }
+
+      return cb.and(predicates.toArray(new Predicate[0]));
     };
 
     return userRepository.findAll(spec, pageable);
