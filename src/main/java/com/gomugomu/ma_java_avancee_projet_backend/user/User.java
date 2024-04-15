@@ -11,6 +11,7 @@ import com.gomugomu.ma_java_avancee_projet_backend.teacher.Teacher;
 import com.gomugomu.ma_java_avancee_projet_backend.common.BasePrimary;
 
 import jakarta.persistence.Table;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -25,22 +26,22 @@ import jakarta.persistence.Enumerated;
 @EqualsAndHashCode(callSuper = false)
 public class User extends BasePrimary {
 
-  @Column(nullable = false)
-  private String email;
+    @Column(nullable = false)
+    private String email;
 
-  @Column(nullable = false)
-  private String password;
+    @Column(nullable = false)
+    private String password;
 
-  @Enumerated(EnumType.ORDINAL)
-  @Column(name = "type", nullable = false)
-  private UserType type;
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "type", nullable = false)
+    private UserType type;
 
-  @OneToOne(mappedBy = "user")
-  private Parent parent;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Parent parent;
 
-  @OneToOne(mappedBy = "user")
-  private Student student;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Student student;
 
-  @OneToOne(mappedBy = "user")
-  private Teacher teacher;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Teacher teacher;
 }

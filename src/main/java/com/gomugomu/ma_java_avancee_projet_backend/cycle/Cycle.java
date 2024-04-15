@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.gomugomu.ma_java_avancee_projet_backend.exam.Exam;
 import com.gomugomu.ma_java_avancee_projet_backend.classs.Class;
+import com.gomugomu.ma_java_avancee_projet_backend.student.Student;
 import com.gomugomu.ma_java_avancee_projet_backend.teacher.Teacher;
 import com.gomugomu.ma_java_avancee_projet_backend.common.BasePrimary;
 
@@ -43,4 +44,8 @@ public class Cycle extends BasePrimary {
   @OneToMany(mappedBy = "cycle", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
       CascadeType.REFRESH })
   private List<Exam> exams;
+
+  @ManyToMany(mappedBy = "cycles", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+      CascadeType.REFRESH })
+  private List<Student> students;
 }
