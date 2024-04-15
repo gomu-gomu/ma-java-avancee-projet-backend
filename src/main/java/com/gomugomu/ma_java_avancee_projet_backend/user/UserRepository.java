@@ -16,7 +16,8 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 public interface UserRepository extends JpaRepository<User, UUID>, JpaSpecificationExecutor<User> {
 
   @RestResource(path = "by-all", rel = "by-all")
-  @Query("SELECT u FROM User u WHERE LOWER(u.email) LIKE LOWER(CONCAT('%', :email, '%')) AND u.type IN :types")
-  Page<User> findByEmailContainingIgnoreCase(@Param("email") String email, @Param("types") List<Integer> types,
+  @Query("SELECT u FROM User u WHERE (:email IS NULL OR :email = '' OR LOWER(u.email) LIKE LOWER(CONCAT('%', :email, '%'))) AND (COALESCE(:types) IS NULL OR u.type IN :types)")
+  Page<User> findByEmailContainingIgnoreCaseAndType(@Param("email") String email,
+      @Param("types") List<Integer> types,
       Pageable pageable);
 }
