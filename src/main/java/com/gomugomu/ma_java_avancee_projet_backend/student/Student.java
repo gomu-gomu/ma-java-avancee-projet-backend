@@ -48,7 +48,8 @@ public class Student extends BasePrimary {
   @JoinColumn(name = "\"userId\"", referencedColumnName = "id")
   private User user;
 
-  @ManyToMany(mappedBy = "children")
+  @ManyToMany(mappedBy = "children", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+      CascadeType.REFRESH })
   private List<Parent> parents;
 
   @ManyToMany(mappedBy = "students", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,

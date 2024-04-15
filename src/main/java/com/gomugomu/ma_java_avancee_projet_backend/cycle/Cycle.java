@@ -32,7 +32,8 @@ public class Cycle extends BasePrimary {
   @Column(nullable = false)
   private short year;
 
-  @ManyToMany(mappedBy = "cycles")
+  @ManyToMany(mappedBy = "cycles", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+      CascadeType.REFRESH })
   private List<Teacher> teachers;
 
   @JoinColumn(name = "\"classId\"", referencedColumnName = "id")

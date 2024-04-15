@@ -18,6 +18,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.CascadeType;
 
 @Data
 @Entity
@@ -30,12 +31,15 @@ public class Subject extends BasePrimary {
   @Column(nullable = false)
   private String name;
 
-  @OneToMany(mappedBy = "subject")
+  @OneToMany(mappedBy = "subject", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+      CascadeType.REFRESH })
   private List<Teacher> teachers;
 
-  @ManyToMany(mappedBy = "subjects")
+  @ManyToMany(mappedBy = "subjects", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+      CascadeType.REFRESH })
   private List<Grade> grades;
 
-  @OneToMany(mappedBy = "subject")
+  @OneToMany(mappedBy = "subject", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+      CascadeType.REFRESH })
   private List<Exam> exams;
 }
