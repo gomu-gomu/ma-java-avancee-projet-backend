@@ -2,15 +2,14 @@ package com.gomugomu.ma_java_avancee_projet_backend.auth;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import lombok.AllArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginDTO {
+public class LoginRequest {
 
   @JsonProperty(value = "email")
   private String email;
