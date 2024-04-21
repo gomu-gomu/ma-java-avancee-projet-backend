@@ -1,34 +1,58 @@
 package com.gomugomu.ma_java_avancee_projet_backend.security;
 
+import javax.sql.DataSource;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.Customizer;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+
+import com.gomugomu.ma_java_avancee_projet_backend.user.UserType;
+
+import org.springframework.security.provisioning.UserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class SecurityConfig {
 
   @Bean
-  public InMemoryUserDetailsManager userDetailsManager() {
-    UserDetails admin = User.builder().username(("admin")).password("{noop}pwd").roles("ADMIN").build();
-    UserDetails teacher = User.builder().username(("teacher")).password("{noop}pwd").roles("TEACHER").build();
-    UserDetails parent = User.builder().username(("parent")).password("{noop}pwd").roles("PARENT").build();
-    UserDetails student = User.builder().username(("student")).password("{noop}pwd").roles("STUDENT").build();
+  public PasswordEncoder noOpPasswordEncoder() {
+    return new PasswordEncoder() {
+      @Override
+      public String encode(CharSequence rawPassword) {
+        return rawPassword.toString();
+      }
 
-    return new InMemoryUserDetailsManager(admin, teacher, parent, student);
+      @Override
+      public boolean matches(CharSequence rawPassword, String encodedPassword) {
+        return rawPassword.toString().equals(encodedPassword);
+      }
+    };
+  }
+
+  @Bean
+  public UserDetailsManager detailsManager(DataSource dataSource, PasswordEncoder noOpPasswordEncoder) {
+    JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
+
+    jdbcUserDetailsManager.setUsersByUsernameQuery("select email, password, 1 as enabled from users where email=?");
+    jdbcUserDetailsManager
+        .setAuthoritiesByUsernameQuery("select email, concat('ROLE_', type), 1 as enabled from users where email=?");
+
+    return jdbcUserDetailsManager;
   }
 
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http.authorizeHttpRequests(configurer -> configurer
-        .requestMatchers(HttpMethod.POST, "/api/auth/**").hasAnyRole("ADMIN", "TEACHER", "PARENT", "STUDENT")
-        .anyRequest().hasRole("ADMIN"));
+        .requestMatchers(HttpMethod.POST, "/api/auth/**")
+        .hasAnyRole(UserType.ADMIN.getRole(), UserType.TEACHER.getRole(), UserType.PARENT.getRole(),
+            UserType.STUDENT.getRole())
+        .anyRequest().hasRole(UserType.ADMIN.getRole()));
 
     http.httpBasic(Customizer.withDefaults());
     http.csrf(csrf -> csrf.disable());
