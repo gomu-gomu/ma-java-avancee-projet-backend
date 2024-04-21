@@ -15,24 +15,15 @@ import org.springframework.security.provisioning.JdbcUserDetailsManager;
 
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class SecurityConfig {
 
   @Bean
-  public PasswordEncoder noOpPasswordEncoder() {
-    return new PasswordEncoder() {
-      @Override
-      public String encode(CharSequence rawPassword) {
-        return rawPassword.toString();
-      }
-
-      @Override
-      public boolean matches(CharSequence rawPassword, String encodedPassword) {
-        return rawPassword.toString().equals(encodedPassword);
-      }
-    };
+  public PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
   }
 
   @Bean
