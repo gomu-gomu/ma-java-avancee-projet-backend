@@ -7,6 +7,9 @@ import java.security.Key;
 import java.util.function.Function;
 
 import org.springframework.stereotype.Service;
+
+import com.gomugomu.ma_java_avancee_projet_backend.user.User;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -29,14 +32,21 @@ public class JwtService {
   private long REFRESH_TOKEN_EXPIRATION;
 
   public String generateToken(UserDetails userDetails) {
-    return this.generateToken(new HashMap<>(), userDetails);
+    Map<String, Object> extraClaims = new HashMap<>();
+    extraClaims.put("id", ((User) userDetails).getId());
+
+    return this.generateToken(extraClaims, userDetails);
   }
 
   public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
-    return buildToken(new HashMap<>(), userDetails, TOKEN_EXPIRATION);
+    extraClaims.put("id", ((User) userDetails).getId());
+    return buildToken(extraClaims, userDetails, TOKEN_EXPIRATION);
   }
 
   public String generateRefreshToken(UserDetails userDetails) {
+    Map<String, Object> extraClaims = new HashMap<>();
+    extraClaims.put("id", ((User) userDetails).getId());
+
     return buildToken(new HashMap<>(), userDetails, REFRESH_TOKEN_EXPIRATION);
   }
 
