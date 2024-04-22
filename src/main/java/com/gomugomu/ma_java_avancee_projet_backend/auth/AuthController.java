@@ -36,10 +36,10 @@ public class AuthController {
             login.getPassword()));
 
     User user = userRepository.findByEmail(login.getEmail()).orElseThrow();
-    var jwtToken = jwtService.generateToken(user);
-    var refreshToken = jwtService.generateRefreshToken(user);
+    String jwtToken = jwtService.generateToken(user);
+    String refreshToken = jwtService.generateRefreshToken(user);
 
-    var token = LoginResponse.builder()
+    LoginResponse token = LoginResponse.builder()
         .accessToken(jwtToken)
         .refreshToken(refreshToken)
         .build();
