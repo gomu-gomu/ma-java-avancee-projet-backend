@@ -18,6 +18,8 @@ public interface UserRepository extends JpaRepository<User, UUID>, JpaSpecificat
 
   Optional<User> findByEmail(String email);
 
+  Integer countByType(UserType type);
+
   @RestResource(path = "by-all", rel = "by-all")
   @Query("SELECT u FROM User u WHERE (:email IS NULL OR :email = '' OR LOWER(u.email) LIKE LOWER(CONCAT('%', :email, '%'))) AND (COALESCE(:types) IS NULL OR u.type IN :types)")
   Page<User> findByEmailContainingIgnoreCaseAndType(@Param("email") String email,
