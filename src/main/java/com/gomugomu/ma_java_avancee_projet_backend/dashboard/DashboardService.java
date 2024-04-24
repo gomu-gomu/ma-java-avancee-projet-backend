@@ -1,5 +1,7 @@
 package com.gomugomu.ma_java_avancee_projet_backend.dashboard;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -45,5 +47,9 @@ public class DashboardService {
         .teachers(userRepository.countByType(UserType.TEACHER))
         .students(userRepository.countByType(UserType.STUDENT))
         .build();
+  }
+
+  public List<CycleSuccessResponse> getCycleSuccess() {
+    return List.of();
   }
 }
