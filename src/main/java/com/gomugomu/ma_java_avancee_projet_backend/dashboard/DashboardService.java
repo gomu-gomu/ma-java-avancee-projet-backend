@@ -50,6 +50,6 @@ public class DashboardService {
   }
 
   public List<CycleSuccessResponse> getCycleSuccess() {
-    return List.of();
+    return cycleRepository.cycleSuccess();
   }
 }

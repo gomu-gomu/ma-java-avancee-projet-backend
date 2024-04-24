@@ -1,11 +1,7 @@
 package com.gomugomu.ma_java_avancee_projet_backend.dashboard;
 
-import lombok.Data;
-import lombok.AllArgsConstructor;
+public interface CycleSuccessResponse {
+  Short getCycleYear();
 
-@Data
-@AllArgsConstructor
-public class CycleSuccessResponse {
-  private short year;
-  private Double successRate;
+  Double getSuccessPercentage();
 }
