@@ -40,4 +40,10 @@ public class DashboardController {
     Short response = dashboardService.getLatestCycleYear();
     return ResponseEntity.ok(response);
   }
+
+  @GetMapping("/topClasses")
+  ResponseEntity<List<TopClassesResponse>> topClasses(@RequestParam(defaultValue = "3") Short max) {
+    List<TopClassesResponse> response = dashboardService.getTopClasses(max);
+    return ResponseEntity.ok(response);
+  }
 }

@@ -64,4 +64,8 @@ public class DashboardService {
   public Short getLatestCycleYear() {
     return cycleRepository.getLatestCycleYear();
   }
+  
+  public List<TopClassesResponse> getTopClasses(Short max) {
+    return classRepository.getTopClasses(max);
+  }
 }
