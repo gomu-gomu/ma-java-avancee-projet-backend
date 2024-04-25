@@ -11,6 +11,7 @@ import com.gomugomu.ma_java_avancee_projet_backend.grade.GradeRepository;
 import com.gomugomu.ma_java_avancee_projet_backend.cycle.CycleRepository;
 import com.gomugomu.ma_java_avancee_projet_backend.classs.ClassRepository;
 import com.gomugomu.ma_java_avancee_projet_backend.sector.SectorRepository;
+import com.gomugomu.ma_java_avancee_projet_backend.student.StudentRepository;
 import com.gomugomu.ma_java_avancee_projet_backend.subject.SubjectRepository;
 
 @Service
@@ -34,6 +35,9 @@ public class DashboardService {
   @Autowired
   private ClassRepository classRepository;
 
+  @Autowired
+  private StudentRepository studentRepository;
+
   public DashboardCountResponse getCounts() {
     return DashboardCountResponse
         .builder()
@@ -51,5 +55,13 @@ public class DashboardService {
 
   public List<CycleSuccessResponse> getCycleSuccess() {
     return cycleRepository.cycleSuccess();
+  }
+
+  public List<TopStudentsResponse> getTopStudents(Short max) {
+    return studentRepository.getTopStudents(max);
+  }
+
+  public Short getLatestCycleYear() {
+    return cycleRepository.getLatestCycleYear();
   }
 }
