@@ -31,4 +31,6 @@ public interface CycleRepository extends JpaRepository<Cycle, UUID> {
       """, nativeQuery = true)
   List<CycleSuccessResponse> cycleSuccess();
 
+  @Query(value = "SELECT MAX(year) AS year FROM cycles;", nativeQuery = true)
+  Short getLatestCycleYear();
 }
