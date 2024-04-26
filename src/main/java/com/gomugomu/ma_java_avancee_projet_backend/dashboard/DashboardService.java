@@ -1,5 +1,6 @@
 package com.gomugomu.ma_java_avancee_projet_backend.dashboard;
 
+import java.util.UUID;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -67,5 +68,9 @@ public class DashboardService {
   
   public List<TopClassesResponse> getTopClasses(Short max) {
     return classRepository.getTopClasses(max);
+  }
+ 
+  public List<StudentInfoResponse> getStudentInfo(UUID id) {
+    return studentRepository.getStudentInfo(id);
   }
 }

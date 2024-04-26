@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.gomugomu.ma_java_avancee_projet_backend.dashboard.TopStudentsResponse;
+import com.gomugomu.ma_java_avancee_projet_backend.dashboard.StudentInfoResponse;
 
 public interface StudentRepository extends JpaRepository<Student, UUID> {
 
@@ -43,4 +44,29 @@ public interface StudentRepository extends JpaRepository<Student, UUID> {
     default List<TopStudentsResponse> getTopStudents(Short max) {
         return findTopStudents().stream().limit(max).collect(Collectors.toList());
     }
-}
+
+    @Query(value = """
+        WITH StudentLatestCycle AS (
+            SELECT 
+                sc."cycleId",
+                MAX(c.year) AS "cycleYear"
+            FROM "studentCycles" sc
+            JOIN cycles c ON sc."cycleId" = c.id
+            WHERE sc."studentId" = :id
+            GROUP BY sc."cycleId"
+            ORDER BY MAX(c.year) DESC
+            LIMIT 1
+        )
+        SELECT
+            c.year AS "year",
+            cls.name AS "className",
+            g.name AS "grade",
+            sec.name AS "sector"
+        FROM StudentLatestCycle slc
+        JOIN cycles c ON slc."cycleId" = c.id
+        JOIN classes cls ON c."classId" = cls.id
+        JOIN grades g ON cls."gradeId" = g.id
+        JOIN sectors sec ON g."sectorId" = sec.id;
+    """, nativeQuery = true)
+    List<StudentInfoResponse> getStudentInfo(@Param("id") UUID id);
+} 
