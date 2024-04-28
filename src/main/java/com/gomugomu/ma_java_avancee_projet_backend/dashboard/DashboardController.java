@@ -50,8 +50,14 @@ public class DashboardController {
   }
 
   @GetMapping("/info/student/{id}")
-  ResponseEntity<List<StudentInfoResponse>> topClasses(@PathVariable UUID id) {
+  ResponseEntity<List<StudentInfoResponse>> studentInfo(@PathVariable UUID id) {
     List<StudentInfoResponse> response = dashboardService.getStudentInfo(id);
+    return ResponseEntity.ok(response);
+  }
+
+  @GetMapping("/studentScores/{id}")
+  ResponseEntity<List<StudentScoresResponse>> studentScores(@PathVariable UUID id) {
+    List<StudentScoresResponse> response = dashboardService.getStudentScores(id);
     return ResponseEntity.ok(response);
   }
 }

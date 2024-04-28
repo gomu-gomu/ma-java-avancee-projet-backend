@@ -73,4 +73,8 @@ public class DashboardService {
   public List<StudentInfoResponse> getStudentInfo(UUID id) {
     return studentRepository.getStudentInfo(id);
   }
+
+  public List<StudentScoresResponse> getStudentScores(UUID id) {
+    return studentRepository.getStudentScores(id);
+  }
 }

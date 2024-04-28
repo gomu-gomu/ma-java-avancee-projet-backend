@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.gomugomu.ma_java_avancee_projet_backend.dashboard.TopStudentsResponse;
 import com.gomugomu.ma_java_avancee_projet_backend.dashboard.StudentInfoResponse;
+import com.gomugomu.ma_java_avancee_projet_backend.dashboard.StudentScoresResponse;
 
 public interface StudentRepository extends JpaRepository<Student, UUID> {
 
@@ -69,4 +70,23 @@ public interface StudentRepository extends JpaRepository<Student, UUID> {
         JOIN sectors sec ON g."sectorId" = sec.id;
     """, nativeQuery = true)
     List<StudentInfoResponse> getStudentInfo(@Param("id") UUID id);
+
+    @Query(value = """
+        SELECT
+            c.year AS "year",
+            sub.name AS "subject",
+            AVG(se.score) AS "score"
+        FROM students s
+        JOIN "studentExams" se ON s.id = se."studentId"
+        JOIN exams e ON se."examId" = e.id
+        JOIN subjects sub ON e."subjectId" = sub.id
+        JOIN cycles c ON e."cycleId" = c.id
+        JOIN classes cls ON c."classId" = cls.id
+        JOIN grades g ON cls."gradeId" = g.id
+        JOIN sectors sec ON g."sectorId" = sec.id
+        WHERE s.id = :id
+        GROUP BY c.year, sub.name, g.name, sec.name
+        ORDER BY sub.name;
+    """, nativeQuery = true)
+    List<StudentScoresResponse> getStudentScores(@Param("id") UUID id);
 } 
